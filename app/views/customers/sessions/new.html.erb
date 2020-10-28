@@ -1,4 +1,4 @@
-<h3>会員の方はこちらからログイン</h3>
+<h2>会員の方はこちらからログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -19,7 +19,6 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
-
 
 <h3>登録がお済みでない方</h3>
 <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。</p>
