@@ -1,0 +1,24 @@
+<h3>商品一覧</h3>
+<p>（全　件）</p>
+
+<table class="table table-striped">
+
+
+  <tbody>
+
+    <% @items.each do |item| %>
+      <tr class="new-table">
+        <td>
+          <span><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
+        </td>
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <%= item.price %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</div>
