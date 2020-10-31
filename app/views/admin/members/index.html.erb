@@ -1,0 +1,36 @@
+<h2>会員一覧</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+     <th><P>会員ID</P></th>
+     <th><P>氏名</P></th>
+     <th><p>メールアドレス</p></th>
+     <th><p>会員ステータス</p></th>
+    </tr>
+  </thead>
+
+<!-- メンバーの氏名が表示されない。会員ステータスの表示（有効・退会済み）をさせる。 -->
+
+  <% @members.each do |member| %>
+      <tr class="new-table">
+        <td>
+          <%= member.id %>
+        </td>
+        <td>
+          <%= member.last_name %>
+        </td>
+        <td>
+          <%= member.first_name %>
+        </td>
+        <td>
+          <%= member.email %>
+        </td>
+        <td>
+          <%= member.is_deleted %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</div>

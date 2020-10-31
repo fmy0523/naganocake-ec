@@ -1,0 +1,28 @@
+<h2>会員編集情報編集</h2>
+
+<p>顧客ID</p>
+<p><%= @member.id %></p>
+
+<%= form_for(@member, url: edit_admin_member_path) do |f| %>
+
+
+  <p>氏名</p>
+  <!-- last_nameとfirst_nameを氏名として表示させる -->
+
+  <p>フリガナ</p>
+  <!-- last_name_kanaとfirst_name_kanaをフリガナとして表示させる -->
+
+  <p>郵便番号</p>
+  <%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"郵便番号"%>
+
+  <p>住所</p>
+  <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"住所"%>
+
+  <p>電話番号</p>
+  <%= f.text_field :phone_number, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"電話番号"%>
+
+  <p>メールアドレス</p>
+  <%= f.text_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%>
+
+
+<% end %>
