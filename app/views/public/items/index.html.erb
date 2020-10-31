@@ -9,7 +9,9 @@
     <% @items.each do |item| %>
       <tr class="new-table">
         <td>
-          <span><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
+          <%= link_to public_item_path(item.id) do %>
+          <span><%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
+          <% end %>
         </td>
         <td>
           <%= item.name %>

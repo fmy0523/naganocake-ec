@@ -9,7 +9,88 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+
+
+<!-- ヘッダー -->
+
+<div class="container">
+  <div class="row header">
+    <nav class="navbar navbar-inverse">
+      <div class="col-lg-6">
+        <h4>Naganocake</h4>
+      </div>
+      <div class="col-lg-6">
+        <div id="slidemenu">
+          <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+                 <!-- user_signed_inは、devise側で用意しているヘルパー -->
+                <% if customer_signed_in? %>
+                <!-- ログイン済みの場合 -->
+                  <li>
+                  <!-- 　<span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
+                    <!-- マイページ -->
+                  </li>
+
+
+                  <li>
+                    <%= link_to public_items_path do %>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    商品一覧
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <!-- <span class="glyphicon glyphicon-book" aria-hidden="true"></span> -->
+                    <!-- カート -->
+                  </li>
+
+                  <li>
+                    <%= link_to destroy_customer_session_path, method: :delete do %>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    ログアウト
+                    <% end %>
+                  </li>
+
+                <% else %>
+                   <!-- ログインしていない場合 -->
+
+                  <li>
+                    <!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
+                    <!-- About -->
+                  </li>
+
+                   <li>
+                    <%= link_to public_items_path do %>
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                    商品一覧
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to new_customer_registration_path do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    新規登録
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to new_customer_session_path do %>
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                    ログイン
+                    <% end %>
+                  </li>
+
+                <% end %>
+             </ul>
+         </div>
+       </div>
+       </nav>
+    </div>
+</div>
+
+
+
+<body>
+ <%= yield %>
+</body>
+
 </html>
