@@ -1,10 +1,26 @@
 class ApplicationController < ActionController::Base
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
 
+# カート機能関連
   protect_from_forgery with: :exception
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :current_cart
+
+  # def current_cart
+  #   if session[:cart_id]
+  #     @cart = Cart_item.find(session[:cart_id])
+  #   else
+  #     # @cart = Cart_item.create
+  #     # session[:cart_id] = @cart.id
+  #   end
+  # end
+
+
+
+
+
 
 
   def after_sign_in_path_for(resource)
