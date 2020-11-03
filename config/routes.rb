@@ -22,7 +22,12 @@ namespace :admin do
 namespace :public do
      root 'homes#top'
      resources :items
+     resources :cart_items
   end
+
+
+post 'public/items/:id' => 'items#create'
+
 
 # root 'public/items#index'
 

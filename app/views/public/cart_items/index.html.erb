@@ -1,0 +1,31 @@
+<h2>ショッピングカート</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><P>商品名</P></th>
+      <th><P>単価（税込）</P></th>
+      <th><P>数量</P></th>
+      <th><P>小計</P></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <%= @cart_items.items.each do |item| %>
+      <tr class="new-table">
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <!-- 単価（税込） -->
+        </td>
+        <td>
+          <!-- 数量 -->
+        </td>
+         <td>
+          <!-- 小計 -->
+        </td>
+      </tr>
+   <%= end %>
+  </tbody>
+</table>
