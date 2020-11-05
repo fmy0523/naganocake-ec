@@ -5,7 +5,7 @@ class Public::CartItemsController < ApplicationController
 
 
   def index
-    @cart_items = Cart_item.find(params[:id])
+    @cart_items = CartItem.find(params[:id])
   end
 
    # 商品一覧画面から、「商品購入」を押した時のアクション
@@ -22,7 +22,7 @@ class Public::CartItemsController < ApplicationController
    private
 
    def cart_item_params
-    params.require(:cart_item).permit(:name, :introduction, :price)
+    params.require(:cart_item).permit(:name, :introduction, :price, :quantity)
    end
 
 end

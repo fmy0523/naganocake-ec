@@ -5,17 +5,11 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @cart_item = CartItem.new
   	@item = Item.find(params[:id])
   end
 
   def create
-    item = Item.new(item_params)
-    item.save
-    # 商品一覧画面へリダイレクト
-    redirect_to public_items_path
-  end
-
-  def update
   end
 
   private

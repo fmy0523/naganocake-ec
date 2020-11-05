@@ -1,11 +1,9 @@
 <h2>商品詳細</h2>
 
 
-
 <span><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
 
 
-  <%= form_for(@item, url: admin_item_path) do |f| %>
 
     <h2>商品名</h2>
     <p><%= @item.name %></p>
@@ -14,8 +12,11 @@
     <p><%= @item.introduction %></p>
 
     <h2>税込価格（税抜価格）</h2>
-    <p><%= @item.price %></p>
-    <h2>円</h2>
+    <p><%= @item.price %>円</p>
+
+	<%= form_for(@cart_item, url: public_items_path) do |f| %>
+      <%= f.number_field :quantity, min: 0 %>
+
 
     <%= f.submit 'カートに入れる', class: "btn btn-primary" %>
 
