@@ -14,10 +14,12 @@
     <h2>税込価格（税抜価格）</h2>
     <p><%= @item.price %>円</p>
 
-	<%= form_for(@cart_item, url: public_items_path) do |f| %>
+	<%= form_for(@cart_item, url: public_cart_items_path) do |f| %>
+      <!-- 商品のidを渡す -->
+      <%= f.hidden_field :item_id, :value => @item.id %>
       <%= f.number_field :quantity, min: 0 %>
 
 
     <%= f.submit 'カートに入れる', class: "btn btn-primary" %>
 
-<% end %>
+	<% end %>
