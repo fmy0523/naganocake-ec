@@ -39,8 +39,10 @@
                   </li>
 
                   <li>
-                    <!-- <span class="glyphicon glyphicon-book" aria-hidden="true"></span> -->
-                    <!-- カート -->
+                    <%= link_to public_cart_items_path do %>
+                    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                    カート
+                    <% end %>
                   </li>
 
                   <li>
@@ -54,8 +56,10 @@
                    <!-- ログインしていない場合 -->
 
                   <li>
-                    <!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
-                    <!-- About -->
+                    <%= link_to public_about_path do %>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    About
+                    <% end %>
                   </li>
 
                    <li>

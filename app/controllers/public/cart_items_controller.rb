@@ -1,28 +1,41 @@
 class Public::CartItemsController < ApplicationController
 
-  # before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
+
 
 
 
   def index
-    @cart_items = CartItem.find(params[:id])
+    @cart_items = CartItem.all
   end
 
-   # 商品一覧画面から、「商品購入」を押した時のアクション
-   # def add_item
-   #   if @cart_item.blank?
-   #     @cart_item = current_cart.cart_items.build(item_id: params[:item_id])
-   #   end
-   #   @cart_item.quantity += params[:quantity].to_i
-   #   @cart_item.save
-   #   redirect_to public_cart_items_path
-   # end
+  def create
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    @cart_item.save
+    # 商品をカートに入れたらカート画面へ遷移
+    redirect_to public_cart_items_path
+  end
 
 
-   private
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to public_cart_items_path
+    # if @cart_item.item.destroy
+     # flash[:notice] = "item was successfully destroyed."
+     # redirect_to public_cart_item_path
+    # end
+  end
 
-   def cart_item_params
-    params.require(:cart_item).permit(:name, :introduction, :price, :quantity)
-   end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price, :quantity)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:quantity, :item_id)
+  end
 
 end

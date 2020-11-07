@@ -11,21 +11,38 @@
   </thead>
 
   <tbody>
-     <%= @cart_items.each do |item| %>
+    <% @sum = 0 %>
+      <% @cart_items.each do |cart_item| %>
       <tr class="new-table">
         <td>
-          <%= item.name %>
+          <%= cart_item.item.name %>
         </td>
         <td>
           <!-- 単価（税込） -->
+          <%= cart_item.item.price %>
         </td>
         <td>
           <!-- 数量 -->
+          <%= cart_item.quantity %>
         </td>
-         <td>
+        <td>
           <!-- 小計 -->
+          <%= (cart_item.item.price * cart_item.quantity).to_i %>
         </td>
+        <td>
+            <button type="button" class="btn btn-default" aria-label="Left Align">
+            <%= link_to "Destroy", public_cart_items_path(cart_item), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            </button>
+        </td>
+         <!-- 合計金額の計算 -->
+         <% @sum += cart_item.item.price * cart_item.quantity %>
       </tr>
-   <%= end %>
+    <% end %>
   </tbody>
 </table>
+  <%= link_to public_items_path do %>
+    買い物を続ける
+  <% end %>
+
+  <h3>合計金額</h3>
+  <p><%= @sum %>円</p>

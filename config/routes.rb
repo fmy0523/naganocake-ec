@@ -23,10 +23,12 @@ namespace :public do
      root 'homes#top'
      resources :items
      resources :cart_items
+     post 'items_path' => 'items#create'
+     get 'about' => 'homes#about'
   end
 
 
-post 'public/items/:id' => 'items#create'
+
 
 
 # root 'public/items#index'
