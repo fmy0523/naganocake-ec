@@ -1,9 +1,6 @@
 class Public::CartItemsController < ApplicationController
 
 
-
-
-
   def index
     @cart_items = CartItem.all
   end
@@ -21,6 +18,7 @@ class Public::CartItemsController < ApplicationController
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to public_cart_items_path
+
     # if @cart_item.item.destroy
      # flash[:notice] = "item was successfully destroyed."
      # redirect_to public_cart_item_path

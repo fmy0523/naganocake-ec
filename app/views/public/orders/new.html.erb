@@ -1,0 +1,18 @@
+<h2>注文情報入力</h2>
+
+  <h3>支払方法</h3>
+    <%= form_for(@order, url: public_orders_comfirm_path) do |f| %>
+      <%= f.radio_button :pay, 0 %>
+      <%= f.label :pay, :クレジットカード %><br>
+
+      <%= f.radio_button :pay, 1 %>
+  	  <%= f.label :pay, :銀行振込 %>
+
+
+  <h3>お届け先</h3>
+
+      <p><%= current_customer.address %></p>
+
+      <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+
+    <% end %>
