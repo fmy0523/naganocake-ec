@@ -49,6 +49,7 @@
       <tr class="new-table">
         <td>
         　<!-- 送料 -->
+          <!-- 送料カラムがあるので後で修正する。 -->
           <p><%= a = 800 %>円</p>
         </td>
         <td>
@@ -64,10 +65,22 @@
 </table>
 
   <h3>支払方法</h3>
-
+  <%= current_customer.orders %>
 
   <h3>お届け先</h3>
     <p><%= current_customer.address %></p>
 
+<%= form_for(@order, url: public_orders_path) do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :price %>
+  <%= f.hidden_field :quantity %>
+  <%= f.hidden_field :pay %>
+  <!-- 送料、小計、合計金額も送る？ -->
+   <!-- <%= f.hidden_field %> -->
+  <%= f.submit '購入を確定する'%>
+<% end %>
+
+
 </div>
+
 
