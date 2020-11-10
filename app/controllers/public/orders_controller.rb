@@ -8,7 +8,8 @@ class Public::OrdersController < ApplicationController
   # 注文情報確認画面
   def comfirm
     @cart_items = CartItem.all
-    @order = Order.all
+    # new.html.erbで値が入った＠orderを受け取り（params）
+    @order = Order.new(order_params)
   end
 
   # 注文完了画面
@@ -17,10 +18,14 @@ class Public::OrdersController < ApplicationController
 
   # 注文確定処理
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    # confirm.html.erbのform_forからここへくる。
+    # データを新規登録するためのインスタンス作成
+    @order = Order.new
+    # 文字列の数値を.to_iで数値に変換
+    @order.pay = order_params[:pay].to_i
     @order.save
-    redirect_to public_orders_comfirm_path(order.id)
+    # 注文完了画面へリダイレクト
+    redirect_to public_orders_complete_path
   end
 
 
@@ -33,6 +38,7 @@ class Public::OrdersController < ApplicationController
    def order_params
      params.require(:order).permit(:pay)
    end
+   # require(:order).
 
    def cart_item_params
     params.require(:cart_item).permit(:quantity, :item_id)
