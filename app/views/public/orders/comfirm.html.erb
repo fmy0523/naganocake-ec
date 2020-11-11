@@ -65,18 +65,19 @@
 </table>
 
   <h3>支払方法</h3>
-  <%= current_customer.orders %>
+    <%= @order.pay %>
 
   <h3>お届け先</h3>
     <p><%= current_customer.address %></p>
 
 <%= form_for(@order, url: public_orders_path) do |f| %>
+  <%= f.hidden_field :postal_code %>
+  <%= f.hidden_field :address %>
   <%= f.hidden_field :name %>
-  <%= f.hidden_field :price %>
-  <%= f.hidden_field :quantity %>
+  <%= f.hidden_field :freight %>
+  <%= f.hidden_field :total %>
   <%= f.hidden_field :pay %>
-  <!-- 送料、小計、合計金額も送る？ -->
-   <!-- <%= f.hidden_field %> -->
+
   <%= f.submit '購入を確定する'%>
 <% end %>
 

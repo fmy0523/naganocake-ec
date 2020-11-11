@@ -2,10 +2,10 @@
 
   <h3>支払方法</h3>
     <%= form_for(@order, url: public_orders_comfirm_path) do |f| %>
-      <%= f.radio_button :pay, 0 %>
+      <%= f.radio_button :pay, :credit_card %>
       <%= f.label :pay, :クレジットカード %><br>
 
-      <%= f.radio_button :pay, 1 %>
+      <%= f.radio_button :pay, :bank_transfer %>
   	  <%= f.label :pay, :銀行振込 %>
 
 
