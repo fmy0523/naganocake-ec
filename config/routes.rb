@@ -24,7 +24,10 @@ namespace :public do
      resources :items
      resources :cart_items
      resources :orders, only: [:new, :create]
-     resources :customers
+     get 'customers/quit' => 'customers#quit'
+     # 退会処理
+     patch 'customers/withdraw' => 'customers#withdraw'
+     resources :customers, only: [:show, :edit, :update]
      # 注文情報入力画面から注文情報確認画面への遷移（postがあるから不要？）
      # get 'orders/comfirm' => 'orders#comfirm'
      # 注文情報入力画面から注文情報確認画面
