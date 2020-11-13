@@ -71,12 +71,15 @@
     <p><%= current_customer.address %></p>
 
 <%= form_for(@order, url: public_orders_path) do |f| %>
-  <%= f.hidden_field :postal_code %>
-  <%= f.hidden_field :address %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :freight %>
-  <%= f.hidden_field :total %>
-  <%= f.hidden_field :pay %>
+  <%= f.hidden_field :postal_code, :value => "current_customer.postal_code"%>
+  <%= f.hidden_field :address, :value => "current_customer.address" %>
+  <!-- 名字と名前を結合する -->
+  <%= f.hidden_field :name, :value => "" %>
+  <!-- 送料を定義する？ -->
+  <%= f.hidden_field :freight, :value => "" %>
+  <!-- 請求合計金額↑計算やり直し -->
+  <%= f.hidden_field :total, :value => "" %>
+  <%= f.hidden_field :pay, :value => "" %>
 
   <%= f.submit '購入を確定する'%>
 <% end %>

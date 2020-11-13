@@ -26,8 +26,10 @@
                 <% if customer_signed_in? %>
                 <!-- ログイン済みの場合 -->
                   <li>
-                  <!-- 　<span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
-                    <!-- マイページ -->
+                    <%= link_to public_customer_path(current_customer) do %>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    マイページ
+                    <% end %>
                   </li>
 
 

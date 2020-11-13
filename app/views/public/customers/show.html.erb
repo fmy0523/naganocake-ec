@@ -1,1 +1,46 @@
 <h3>マイページ</h3>
+
+<h4>登録情報</h4>
+  <%= link_to edit_public_customer_path do %>
+    <span class="" aria-hidden="true"></span>
+    編集する
+  <% end %>
+
+	<table class="table table-hover">
+      <tbody>
+             <tr>
+              <td>氏名</td>
+              <td><%= current_customer.last_name %></td>
+             </tr>
+             <br>
+             <tr>
+              <td>カナ</td>
+              <td><%= current_customer.last_name_kana %></td>
+             </tr>
+             <br>
+             <tr>
+              <td>郵便番号</td>
+              <td><%= current_customer.postal_code %></td>
+             </tr>
+             <br>
+             <tr>
+              <td>住所</td>
+              <td><%= current_customer.address %></td>
+             </tr>
+             <br>
+             <tr>
+              <td>電話番号</td>
+              <td><%= current_customer.phone_number %></td>
+             </tr>
+             <br>
+             <tr>
+              <td>メールアドレス</td>
+              <td><%= current_customer.email %></td>
+             </tr>
+           </tbody>
+    </table>
+
+    <%= link_to public_customers_quit_path(current_customer) do %>
+      <span class="" aria-hidden="true"></span>
+      退会する
+    <% end %>
