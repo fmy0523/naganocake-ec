@@ -11,7 +11,6 @@
   </thead>
 
   <tbody>
-    <% @sum = 0 %>
       <% @cart_items.each do |cart_item| %>
       <tr class="new-table">
         <td>
@@ -28,9 +27,8 @@
         <td>
           <!-- 小計 -->
           <%= (cart_item.item.price * cart_item.quantity).to_i %>
+          <!-- @total_priceでも可？ -->
         </td>
-        <!-- 合計金額を出すための計算 -->
-         <% @sum += cart_item.item.price * cart_item.quantity %>
       </tr>
     <% end %>
   </tbody>
@@ -50,15 +48,16 @@
         <td>
         　<!-- 送料 -->
           <!-- 送料カラムがあるので後で修正する。 -->
-          <p><%= a = 800 %>円</p>
+          <p><%= @freight %>円</p>
         </td>
         <td>
         <!-- 　商品合計金額 -->
-          <p><%= @sum %>円</p>
+          <p><%= @total_price %>円</p>
         </td>
         <td>
           <!-- 請求金額 -->
-          <p><%= @sum += a %>円</p>
+          <p><%= @total %>円</p>
+          <!-- コントローラーに@total = (@total_price + @freight).to_i で　ビューに@totalでも可？-->
         </td>
       </tr>
   </tbody>
@@ -69,17 +68,18 @@
 
   <h3>お届け先</h3>
     <p><%= current_customer.address %></p>
+    <p><%= current_customer.name %></p>
 
 <%= form_for(@order, url: public_orders_path) do |f| %>
   <%= f.hidden_field :postal_code, :value => "current_customer.postal_code"%>
   <%= f.hidden_field :address, :value => "current_customer.address" %>
-  <!-- 名字と名前を結合する -->
-  <%= f.hidden_field :name, :value => "" %>
-  <!-- 送料を定義する？ -->
-  <%= f.hidden_field :freight, :value => "" %>
-  <!-- 請求合計金額↑計算やり直し -->
-  <%= f.hidden_field :total, :value => "" %>
-  <%= f.hidden_field :pay, :value => "" %>
+  <!-- 配送先宛名 -->
+  <%= f.hidden_field :name, :value => "current_customer.name" %>
+  <!-- 送料 -->
+  <%= f.hidden_field :freight, :value => "@freight" %>
+  <!-- 請求金額 -->
+  <%= f.hidden_field :total, :value => "@total" %>
+  <%= f.hidden_field :pay %>
 
   <%= f.submit '購入を確定する'%>
 <% end %>

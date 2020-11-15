@@ -9,4 +9,9 @@ class Customer < ApplicationRecord
   # dependent: :destroyは、has_manyで使えるオプション。customerが削除されたらcart_item削除。
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
+
+  def name
+  	last_name + first_name
+  end
+
 end
