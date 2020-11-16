@@ -3,6 +3,18 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
+    # @cart_item = CartItem.find(params[:id])
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += (cart_item.item.price * cart_item.quantity).to_i
+    end
+  end
+
+  # 数量変更
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to public_cart_items_path
   end
 
   def create

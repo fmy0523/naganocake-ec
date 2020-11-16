@@ -5,6 +5,14 @@ class Public::OrdersController < ApplicationController
   	@order = Order.new
   end
 
+  # 注文履歴一覧
+  def index
+  end
+
+  # 注文履歴詳細
+  def show
+  end
+
   # 注文情報確認画面
   def comfirm
     @freight = 800
