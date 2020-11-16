@@ -23,6 +23,7 @@ namespace :admin do
 namespace :public do
      root 'homes#top'
      resources :items
+     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
      resources :cart_items
      patch 'cart_items' => 'cart_items#update'
      # 注文完了画面へ遷移

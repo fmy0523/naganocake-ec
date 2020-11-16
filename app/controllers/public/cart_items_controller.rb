@@ -30,12 +30,20 @@ class Public::CartItemsController < ApplicationController
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to public_cart_items_path
+  end
+
+
+  def destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    redirect_to public_cart_items_path
+  end
 
     # if @cart_item.item.destroy
      # flash[:notice] = "item was successfully destroyed."
      # redirect_to public_cart_item_path
     # end
-  end
+
 
 
   private
