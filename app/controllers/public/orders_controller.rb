@@ -38,7 +38,7 @@ class Public::OrdersController < ApplicationController
   def create
     # confirm.html.erbのform_forからここへくる。
     # データを新規登録するためのインスタンス作成
-    @order = Order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.save
     # 注文完了画面へリダイレクト
     redirect_to public_orders_complete_path
