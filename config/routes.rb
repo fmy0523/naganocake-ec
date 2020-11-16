@@ -17,13 +17,15 @@ namespace :admin do
      root 'homes#top'
      resources :items
      resources :members
+     resources :orders, only: [:index, :show]
   end
 
 namespace :public do
      root 'homes#top'
      resources :items
      resources :cart_items
-     resources :orders, only: [:new, :create]
+     patch 'cart_items' => 'cart_items#update'
+     resources :orders, only: [:new, :index, :show, :create]
      get 'customers/quit' => 'customers#quit'
      # 退会処理
      patch 'customers/withdraw' => 'customers#withdraw'
