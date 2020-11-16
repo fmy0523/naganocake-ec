@@ -15,6 +15,9 @@ class Public::CustomersController < ApplicationController
 
     # 登録情報更新
     def update
+      @customer = Customer.find(params[:id])
+      @customer.update(customer_params)
+      redirect_to public_customer_path
     end
 
     # 退会処理（ステータスの更新）

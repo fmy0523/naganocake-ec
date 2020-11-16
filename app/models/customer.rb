@@ -11,7 +11,11 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   def name
-  	last_name + first_name
+    [last_name, first_name].join(' ')
+  end
+
+  def name_kana
+    [last_name_kana, first_name_kana].join(' ')
   end
 
 end

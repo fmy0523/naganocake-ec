@@ -25,6 +25,8 @@ namespace :public do
      resources :items
      resources :cart_items
      patch 'cart_items' => 'cart_items#update'
+     # 注文完了画面へ遷移
+     get 'orders/complete' => 'orders#complete'
      resources :orders, only: [:new, :index, :show, :create]
      get 'customers/quit' => 'customers#quit'
      # 退会処理
@@ -34,8 +36,6 @@ namespace :public do
      # get 'orders/comfirm' => 'orders#comfirm'
      # 注文情報入力画面から注文情報確認画面
      post 'orders/comfirm' => 'orders#comfirm'
-     # 注文完了画面へ遷移
-     get 'orders/complete' => 'orders#complete'
      # 注文情報確認画面からcreateアクション（既にある？）
      # post 'orders' => 'orders#create'
      post 'items_path' => 'items#create'
