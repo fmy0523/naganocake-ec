@@ -40,6 +40,11 @@
            </tbody>
     </table>
 
+    <%= link_to public_orders_path do %>
+    <span class="" aria-hidden="true"></span>
+    注文履歴一覧
+    <% end %><br>
+
     <%= link_to public_customers_quit_path(current_customer) do %>
       <span class="" aria-hidden="true"></span>
       退会する

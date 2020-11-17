@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_130848) do
   create_table "ordered_items", force: :cascade do |t|
     t.integer "order_id"
     t.integer "item_id"
+    # 購入時価格（税込）
     t.integer "tax_price"
     t.integer "quantity"
     t.datetime "created_at", null: false
@@ -81,7 +82,6 @@ ActiveRecord::Schema.define(version: 2020_11_11_130848) do
     t.integer "pay", limit: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    # 配送先宛名
     t.string "name"
     t.string "postal_code"
     t.string "address"
