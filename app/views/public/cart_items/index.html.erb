@@ -29,13 +29,12 @@
             <%= form_for(cart_item, url:public_cart_item_path(cart_item) ) do |f| %>
               <!-- <%= cart_item.quantity %> -->
               <%= f.number_field :quantity, min: 0, size: "80" %>
-
               <%= f.submit '変更', class: "btn btn-primary" %>
             <% end %>
           </td>
           <td>
             <!-- 小計 -->
-            <%= (cart_item.item.price * cart_item.quantity).to_i %>
+          <%= (cart_item.item.price * cart_item.quantity).to_i %>
           </td>
           <td>
             <button type="button" class="btn btn-default" aria-label="Left Align">

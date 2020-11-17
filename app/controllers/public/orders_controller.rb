@@ -7,10 +7,15 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴一覧
   def index
+    @orders = current_customer.orders
   end
 
   # 注文履歴詳細
   def show
+    @order = Order.find(params[:id])
+    @order_item = @order.ordered_items
+    #合計を計算
+    @total = 0
   end
 
   # 注文情報確認画面
@@ -40,6 +45,18 @@ class Public::OrdersController < ApplicationController
     # データを新規登録するためのインスタンス作成
     @order = current_customer.orders.new(order_params)
     @order.save
+
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      ordered_item = OrderedItem.new
+
+      ordered_item.order_id = @order.id
+      ordered_item.item_id = cart_item.item_id
+      ordered_item.tax_price = cart_item.item.price
+      ordered_item.quantity = cart_item.quantity
+      ordered_item.save
+    end
+    @cart_items.destroy_all
     # 注文完了画面へリダイレクト
     redirect_to public_orders_complete_path
   end

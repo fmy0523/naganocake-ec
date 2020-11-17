@@ -6,7 +6,7 @@ class Public::CartItemsController < ApplicationController
     # @cart_item = CartItem.find(params[:id])
     @total_price = 0
     @cart_items.each do |cart_item|
-      @total_price += (cart_item.item.price * cart_item.quantity).to_i
+       @total_price += (cart_item.item.price * cart_item.quantity).to_i
     end
   end
 

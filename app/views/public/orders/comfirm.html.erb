@@ -69,10 +69,11 @@
     <p><%= current_customer.address %></p>
     <p><%= current_customer.name %></p>
 
+
 <%= form_for(@order, url: public_orders_path) do |f| %>
   <%= f.hidden_field :postal_code, :value => current_customer.postal_code %>
   <%= f.hidden_field :address, :value => current_customer.address %>
-  <!-- 配送先宛名 -->
+  <!-- 宛名 -->
   <%= f.hidden_field :name, :value => current_customer.name %>
   <%= f.hidden_field :freight, :value => @freight %>
   <!-- 請求金額 -->
