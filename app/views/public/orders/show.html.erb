@@ -28,7 +28,7 @@
 						<th>小計</th>
 					</tr>
 
-
+<!-- 一つのオーダーに紐づいているオーダーアイテム -->
 					<% @order_item.each do |order_item| %>
 					<tr>
 
@@ -42,6 +42,7 @@
 						<td><%= order_item.quantity %></td>
 
 						  <td>
+						  	<!--  -->
 						  	<% @subtotal = @price *(order_item.quantity) %>
 						  	<%= @subtotal %>
 					        <% @total += (order_item.item.price*order_item.quantity) %>

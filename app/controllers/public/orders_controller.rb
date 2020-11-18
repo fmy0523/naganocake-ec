@@ -12,7 +12,9 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴詳細
   def show
+    # 一つの注文を見つけて@orderに入れる
     @order = Order.find(params[:id])
+    # 一つのオーダーに紐づいているオーダーアイテム
     @order_item = @order.ordered_items
     #合計を計算
     @total = 0

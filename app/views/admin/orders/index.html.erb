@@ -1,1 +1,24 @@
-<p>注文一覧</p>
+<p>注文履歴一覧</p>
+
+<div class="container">
+	  <table class="table-table-striped">
+	  <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+      </tr>
+      <!-- カスタマーのオーダー -->
+      <% @orders.each do |order| %>
+      <tr>
+      	<!-- 購入日時 -->
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <!-- 購入者 -->
+        <td><%= order.name %></td>
+        <!-- 個数の合計 -->
+        <td><%= order.ordered_items.sum(:quantity) %></td>
+
+        <td><%= link_to "注文履歴詳細", admin_order_path(order) %></td>
+      </tr>
+      <% end %>
+    </table>
+</div>

@@ -14,7 +14,7 @@ devise_for :customers, controllers: {
 
 
 namespace :admin do
-     root 'homes#top'
+     # get '/' => 'homes#top'
      resources :items
      resources :members
      resources :orders, only: [:index, :show]
