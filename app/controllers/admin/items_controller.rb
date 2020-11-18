@@ -1,5 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
+  # before_action :if_not_admins
+
   def new
   	@item = Item.new
   end
@@ -31,6 +33,11 @@ class Admin::ItemsController < ApplicationController
 
   private
   # ストロングパラメータ
+  # 管理ユーザー以外で特定のアクションを実行しようとした場合には、トップページにリダイレクト
+  # def if_not_admin
+  #   redirect_to root_path unless current_customer.admins?
+  # end
+
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :image)
   end
