@@ -9,5 +9,7 @@
 Admin.create!(
    name: '管理者',
    email: 'kanri@test.com',
-   password: '000000'
+   password: '000000',
+   # password_confirmation: "11111111",
+   # admin: true
    )

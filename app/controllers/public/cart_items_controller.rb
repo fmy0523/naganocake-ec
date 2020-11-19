@@ -41,7 +41,7 @@ class Public::CartItemsController < ApplicationController
 
     # if @cart_item.item.destroy
      # flash[:notice] = "item was successfully destroyed."
-     # redirect_to public_cart_item_path
+     # redirect_to cart_item_path
     # end
 
 

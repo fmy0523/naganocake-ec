@@ -22,10 +22,10 @@ class Public::CustomersController < ApplicationController
 
     # 退会処理（ステータスの更新）
     def withdraw
-      @customer = Customer.find(customer_params)
-      #is_deletedカラムにフラグを立てる(defaultはfalse)
+      @customer = Customer.find(current_customer.id)
+      # is_deletedカラムにフラグを立てる(defaultはfalse)
       @customer.update(is_deleted: true)
-      #ログアウトさせる
+      # ログアウトさせる
       reset_session
       flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to root_path

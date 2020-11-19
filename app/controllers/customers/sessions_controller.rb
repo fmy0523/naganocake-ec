@@ -24,4 +24,21 @@ class Customers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  before_action :reject_customer, only: [:create]
+
+  protected
+
+  def reject_customer
+    # emailのデータを探す
+    @customer = Customer.find_by(email: params[:customer][:email].downcase)
+    # enumを使うと、機能面で出てくるデータは文字列になる。（ture、falseはDB上でしか出ない。）
+    if @customer.is_deleted == "退会済み"
+      # valid_password?で入力されたパスワードが正しいことを確認。active_for_authentication?メソッドがfalseであるかどうかを確認
+      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
+        flash[:error] = "退会済みです。"
+        redirect_to new_customer_session_path
+      end
+    end
+  end
 end

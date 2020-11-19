@@ -22,14 +22,34 @@ class ApplicationController < ActionController::Base
 
 
 
-
+  # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    public_items_path(current_customer)
+    case resource
+      when Admin
+        admin_path
+      when Customer
+        public_items_path
+    end
   end
 
+  # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
-    new_customer_session_path
+    case resource
+      when :admin
+        new_admin_session_path
+      when :customer
+        new_customer_session_path
+    end
   end
+
+# 元のコード
+  # def after_sign_in_path_for(resource)
+  #   public_items_path(current_customer)
+  # end
+
+  # def after_sign_out_path_for(resource)
+  #   new_customer_session_path
+  # end
 
   protected
 
