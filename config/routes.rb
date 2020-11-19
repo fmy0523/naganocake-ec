@@ -29,9 +29,11 @@ namespace :public do
      get 'orders/complete' => 'orders#complete'
      resources :orders, only: [:new, :index, :show, :create]
      get 'customers/quit' => 'customers#quit'
-     # 退会処理
+
+     # 退会
      patch 'customers/withdraw' => 'customers#withdraw'
      resources :customers, only: [:show, :edit, :update]
+
      # 注文情報入力画面から注文情報確認画面
      post 'orders/comfirm' => 'orders#comfirm'
      post 'items_path' => 'items#create'

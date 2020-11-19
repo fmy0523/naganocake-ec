@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
 
 
-# ログイン後の画面遷移
+  # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
     case resource
       when Admin
@@ -32,13 +32,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
-    # case resource
-    #   # when Admin
-    #   #   new_admin_session_path
-    #   # when Customer
+    case resource
+      when :admin
+        new_admin_session_path
+      when :customer
         new_customer_session_path
-    # end
+    end
   end
 
 # 元のコード
