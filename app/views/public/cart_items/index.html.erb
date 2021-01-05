@@ -13,46 +13,45 @@
       <th><P>小計</P></th>
     </tr>
   </thead>
-
-    <tbody>
-      <% @cart_items.each do |cart_item| %>
-        <tr class="new-table">
-          <td>
-            <%= cart_item.item.name %>
-          </td>
-          <td>
-            <!-- 単価（税込） -->
-            <%= cart_item.item.price %>
-          </td>
-          <td>
-            <!-- 数量 -->
-            <%= form_for(cart_item, url:public_cart_item_path(cart_item) ) do |f| %>
-              <!-- <%= cart_item.quantity %> -->
-              <%= f.number_field :quantity, min: 0, size: "80" %>
-              <%= f.submit '変更', class: "btn btn-primary" %>
-            <% end %>
-          </td>
-          <td>
-            <!-- 小計 -->
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr class="new-table">
+        <td>
+          <%= cart_item.item.name %>
+        </td>
+        <td>
+          <!-- 単価（税込） -->
+          <%= cart_item.item.price %>
+        </td>
+        <td>
+          <!-- 数量 -->
+          <%= form_for(cart_item, url:public_cart_item_path(cart_item) ) do |f| %>
+            <!-- <%= cart_item.quantity %> -->
+            <%= f.number_field :quantity, min: 0, size: "80" %>
+            <%= f.submit '変更', class: "btn btn-primary" %>
+          <% end %>
+        </td>
+        <td>
+          <!-- 小計 -->
           <%= (cart_item.item.price * cart_item.quantity).to_i %>
-          </td>
-          <td>
-            <button type="button" class="btn btn-default" aria-label="Left Align">
+        </td>
+        <td>
+          <button type="button" class="btn btn-default" aria-label="Left Align">
             <%= link_to "削除する", public_cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-            </button>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
+          </button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-  <%= link_to public_items_path do %>
-    買い物を続ける
-  <% end %>
+<%= link_to public_items_path do %>
+  買い物を続ける
+<% end %>
 
-  <h3>合計金額</h3>
-  <p><%= @total_price %>円</p>
+<h3>合計金額</h3>
+<p><%= @total_price %>円</p>
 
-  <%= link_to new_public_order_path do %>
-     <span class="" aria-hidden="true"></span>
-     情報入力に進む
-  <% end %>
+<%= link_to new_public_order_path do %>
+  <span class="" aria-hidden="true"></span>
+  情報入力に進む
+<% end %>

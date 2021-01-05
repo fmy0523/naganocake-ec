@@ -2,15 +2,12 @@
 <p>（全<%= @items.count %>件）</p>
 
 <table class="table table-striped">
-
-
   <tbody>
-
     <% @items.each do |item| %>
       <tr class="new-table">
         <td>
           <%= link_to public_item_path(item.id) do %>
-          <span><%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
+            <span><%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span>
           <% end %>
         </td>
         <td>
@@ -19,8 +16,7 @@
         <td>
           <%= item.price %>
         </td>
-
       </tr>
     <% end %>
   </tbody>
-</div>
+</table>
